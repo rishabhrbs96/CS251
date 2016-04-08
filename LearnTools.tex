@@ -13,100 +13,95 @@
 \section{gnuplot}
 \section{XFig}
 \section{HTML}
-\section{Git And BitBucket}
+\section{Git}
 	\subsection{Introduction}
 	A \textbf{version control system (VCS)} allows you to track the history of a collection of files. It supports creating different versions of this collection. Each version captures a snapshot of the files at a certain point in time and the VCS allows you to switch between these versions. These versions are stored in a specific place, typically called a repository.
 	\textbf{Git} is a widely used source code management system for software development. It is a \textbf{distributed revision control system} with an emphasis on speed, data integrity, and support for distributed, non-linear workflows. In a distributed version control system each user has a complete local copy of a repository on his individual computer. The user can copy an existing repository. This copying process is typically called cloning and the resulting repository can be referred to as a clone.
 	
 	\subsection{Git terminology}
 	\begin{itemize}
-    \item \textbf{Cloning} : The process of copying an existing Git repository is called cloning. After cloning a repository the user has the complete repository with its history on his local machine. 
-    \item \textbf{Working Tree} : A local repository provides at least one collection of files which originate from a certain version of the repository. This collection of files is called the working tree.
-    \item \textbf{Branching} : Git supports branching which means that you can work on different versions of your collection of files. A branch separates these different versions and allows the user to switch between these versions to work on them.
-    \item \textbf{Repository} : A repository contains the history, the different versions over time and all different branches and tags. In Git each copy of the repository is a complete repository.
-    \item \textbf{Commit} : When you commit your changes into a repository this creates a new commit object in the Git repository. This commit object uniquely identifies a new revision of the content of the repository.
-	\item
+	    \item \textbf{Cloning} : The process of copying an existing Git repository is called cloning. After cloning a repository the user has the complete repository with its history on his local machine. 
+	    \item \textbf{Working Tree} : A local repository provides at least one collection of files which originate from a certain version of the repository. This collection of files is called the working tree.
+	    \item \textbf{Branching} : Git supports branching which means that you can work on different versions of your collection of files. A branch separates these different versions and allows the user to switch between these versions to work on them.
+	    \item \textbf{Repository} : A repository contains the history, the different versions over time and all different branches and tags. In Git each copy of the repository is a complete repository.
+	    \item \textbf{Commit} : When you commit your changes into a repository this creates a new commit object in the Git repository. This commit object uniquely identifies a new revision of the content of the repository.
 	\end{itemize}
 	
 	\subsection{Setting up a Repository}
 	\subsubsection{git init}
-    The git init command creates a new Git repository. It can be used to convert an existing, unversioned project to a Git repository or initialize a new empty repository.  Executing git init creates a .git subdirectory in the project root, which contains all of the necessary metadata for the repo. 
-        
-    \textbf{git init}
+	    The git init command creates a new Git repository. It can be used to convert an existing, unversioned project to a Git repository or initialize a new empty repository.  Executing git init creates a .git subdirectory in the project root, which contains all of the necessary metadata for the repo. 
+	   
+	    \textbf{git init}
+	    Transform the current directory into a Git repository. This adds a .git folder to the current directory and makes it possible to start recording revisions of the project.
+		
 	\subsubsection{git clone}
-    The git clone command copies an existing Git repository. 
-    
-    \textbf{git clone "repo"}
+	    The git clone command copies an existing Git repository. 
+	    
+	    \textbf{git clone "repo"}
+		Clone the repository located at <repo> onto the local machine. The original repository can be located on the local filesystem or on a remote machine accessible via HTTP or SSH.
 	
 	\subsection{Saving changes}
 	\subsubsection{git add}
+		The git add command adds a change in the working directory to the staging area. It tells Git that you want to include updates to a particular file in the next commit. However, git add doesn't really affect the repository in any significant way—changes are not actually recorded until you run git commit.
 
-The git add command adds a change in the working directory to the staging area. It tells Git that you want to include updates to a particular file in the next commit. However, git add doesn't really affect the repository in any significant way—changes are not actually recorded until you run git commit.
-
-\textbf{git add "file"}
+		\textbf{git add "file"}
+		Stage all changes in "file" for the next commit.
 	
 	\subsubsection{git commit}
+		The git commit command commits the staged snapshot to the project history. Committed snapshots can be thought of as “safe” versions of a project—Git will never change them unless you explicity ask it to. 
 
-The git commit command commits the staged snapshot to the project history. Committed snapshots can be thought of as “safe” versions of a project—Git will never change them unless you explicity ask it to. 
+		\textbf{git commit}
+		Commit the staged snapshot. This will launch a text editor prompting you for a commit message. After you’ve entered a message, save the file and close the editor to create the actual commit. 
 
-
-\textbf{git commit}
-Commit the staged snapshot. This will launch a text editor prompting you for a commit message. After you’ve entered a message, save the file and close the editor to create the actual commit. 
-
-\textbf{git commit -m "message"}
-	
+		\textbf{git commit -m "message"}
+		Commit the staged snapshot, but instead of launching a text editor, use "message" as the commit message.	
 	\subsection{Inspecting a repository}
 	\subsubsection{git status}
+		The git status command displays the state of the working directory and the staging area. It lets you see which changes have been staged, which haven’t, and which files aren’t being tracked by Git. Status output does not show you any information regarding the committed project history.
 
-The git status command displays the state of the working directory and the staging area. It lets you see which changes have been staged, which haven’t, and which files aren’t being tracked by Git. Status output does not show you any information regarding the committed project history.
+		\textbf{git status}
+		List which files are staged, unstaged, and untracked.
 
-\textbf{git status}
-List which files are staged, unstaged, and untracked.
+	\subsection{Viewing old commits}
+	\subsubsection{git checkout}
+		The git checkout command serves three distinct functions: checking out files, checking out commits, and checking out branches. In this module, we’re only concerned with the first two configurations.
 
-\subsection{Viewing old commits}
-\subsubsection{git checkout}
+		Checking out a commit makes the entire working directory match that commit. This can be used to view an old state of your project without altering your current state in any way. Checking out a file lets you see an old version of that particular file, leaving the rest of your working directory untouched.
 
-The git checkout command serves three distinct functions: checking out files, checking out commits, and checking out branches. In this module, we’re only concerned with the first two configurations.
+		\textbf{git checkout master}
+			Return to the master branch. Branches are covered in depth in the next module, but for now, you can just think of this as a way to get back to the “current” state of the project.
 
-Checking out a commit makes the entire working directory match that commit. This can be used to view an old state of your project without altering your current state in any way. Checking out a file lets you see an old version of that particular file, leaving the rest of your working directory untouched.
+		\textbf{git checkout "commit" "file"}
+		Check out a previous version of a file. This turns the "file" that resides in the working directory into an exact copy of the one from "commit" and adds it to the staging area.
 
+		\textbf{git checkout "commit"}
+		Update all files in the working directory to match the specified commit. You can use either a commit hash or a tag as the "commit" argument.
 
-\textbf{git checkout master}
-	Return to the master branch. Branches are covered in depth in the next module, but for now, you can just think of this as a way to get back to the “current” state of the project.
+	\subsection{Undoing Changes}
+	\subsubsection{git revert}
 
-\textbf{git checkout "commit" "file"}
-Check out a previous version of a file. This turns the "file" that resides in the working directory into an exact copy of the one from "commit" and adds it to the staging area.
+		The git revert command undoes a committed snapshot. But, instead of removing the commit from the project history, it figures out how to undo the changes introduced by the commit and appends a new commit with the resulting content. This prevents Git from losing history.
 
-\textbf{git checkout "commit"}
-Update all files in the working directory to match the specified commit. You can use either a commit hash or a tag as the "commit" argument.
+		\textbf{git revert "commit"}
+		Generate a new commit that undoes all of the changes introduced in "commit", then apply it to the current branch.
 
-\subsection{Undoing Changes}
-\subsubsection{git revert}
+	\subsubsection{git reset}
+		Git reset can be used to remove committed snapshots, although it’s more often used to undo changes in the staging area and the working directory. In either case, it should only be used to undo local changes—you should never reset snapshots that have been shared with other developers.
 
-The git revert command undoes a committed snapshot. But, instead of removing the commit from the project history, it figures out how to undo the changes introduced by the commit and appends a new commit with the resulting content. This prevents Git from losing history.
+		\textbf{git reset "file"}
+		Remove the specified file from the staging area, but leave the working directory unchanged. This unstages a file without overwriting any changes.
 
-\textbf{git revert "commit"}
-Generate a new commit that undoes all of the changes introduced in "commit", then apply it to the current branch.
+		\textbf{git reset}
+		Reset the staging area to match the most recent commit, but leave the working directory unchanged. 
 
-\subsubsection{git reset}
+	\subsubsection{git clean}
+		The git clean command removes untracked files from your working directory. This is really more of a convenience command, since it’s trivial to see which files are untracked with git status and remove them manually. Like an ordinary rm command, git clean is not undoable, so make sure you really want to delete the untracked files before you run it.
 
- Git reset can be used to remove committed snapshots, although it’s more often used to undo changes in the staging area and the working directory. In either case, it should only be used to undo local changes—you should never reset snapshots that have been shared with other developers.
+		\textbf{git clean -n}
+		Perform a “dry run” of git clean. This will show you which files are going to be removed without actually doing it.
 
-\textbf{git reset "file"}
-Remove the specified file from the staging area, but leave the working directory unchanged. This unstages a file without overwriting any changes.
-
-\textbf{git reset}
-Reset the staging area to match the most recent commit, but leave the working directory unchanged. 
-
-\subsubsection{git clean}
-
-The git clean command removes untracked files from your working directory. This is really more of a convenience command, since it’s trivial to see which files are untracked with git status and remove them manually. Like an ordinary rm command, git clean is not undoable, so make sure you really want to delete the untracked files before you run it.
-
-\textbf{git clean -n}
-Perform a “dry run” of git clean. This will show you which files are going to be removed without actually doing it.
-
-\textbf{git clean -f}
-
+		\textbf{git clean -f}
+		Remove untracked files from the current directory. The -f (force) flag is required unless the clean.requireForce configuration option is set to false (it's true by default). 
 
 
 \section{BitBucket}
