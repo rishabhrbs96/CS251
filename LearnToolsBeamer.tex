@@ -123,6 +123,43 @@ The git revert command undoes a committed snapshot. But, instead of removing the
 
 
 \section{BitBucket}
+\begin{frame}
+\frametitle{Introduction}
+	 Bitbucket is a web-based hosting service for projects that use either the Mercurial (since launch) or Git (since October 2011) revision control systems. Bitbucket offers both commercial plans and free accounts. It offers free accounts with an unlimited number of private repositories. It is a system for hosting version control repositories owned by Atlassian. It is a competitor to github.
+\end{frame}
 
+\begin{frame}
+\frametitle{Creating a Git repository}
+ 	\begin{enumerate}
+ 		\item From Bitbucket, click Repositories and then Create repository button at the top of the page.
+         The system displays the Create a new repository page.
+        \item Enter BitbucketStationLocations for the Name field.
+    Bitbucket uses this Name in the URL of the repository. For example, if the user thebest has a repository called awesomerepo, the URL for that repository would be https://bitbucket.org/thebest/awesomerepo.
+        \item For Access level, leave the This is a private repository box checked. A private repository is only visible to you and those you give access to. If this box is unchecked, everyone can see your repository.
+        \item Pick Git for the Repository type. 
+        \item Click Create repository. Bitbucket creates repository and displays its Overview page.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Cloning repository}
+ 	\begin{enumerate}
+        \item First make a directory on local machine.
+        \item From Bitbucket, go to BitbucketStationLocations repository.
+        Click Clone. The system displays a pop-up clone dialog. By default, the clone dialog sets the protocol to HTTPS or SSH, depending on your settings. For the purposes of this tutorial, don't change your default protocol.
+        \item Copy the highlighted clone command. From terminal window, paste the command copied from Bitbucket and press Return.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Create a file in Bitbucket}
+ 	\begin{enumerate}
+ 		\item From BitbucketStationLocations repository, click Source to open the source directory
+        \item From the Source page, click New file in the top right corner.
+    A page for creating the new file opens. 
+        \item Enter filename in the  filename  field . Then select mode from the Syntax mode list. Finally add the following  code into the text box.
+        \item Click Commit. The Commit message field appears with the message: "filename" created online with Bitbucket. Click Commit under the message field.
+    \end{enumerate}
+\end{frame}
 
 \end{document}
