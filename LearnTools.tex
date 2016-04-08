@@ -132,8 +132,125 @@ This will insert a horizontal line on top of the table and at the bottom too. Th
 cell1 & cell2 & cell3 \\
 Each & is a cell separator and the double-backslash \\ sets the end of this row. 
 \end{verbatim}
+\subsection{Typesetting Mathematical Formulae}
+A mathematical formula can be typeset in-line within a paragraph (text style),
+or the paragraph can be broken and the formula typeset separately (display
+style). Mathematical equations within a paragraph are entered between \$
+and \$:\\
 
-		\section{gnuplot}
+Let's see an example of the \textbf{inline} mode: 
+
+\begin{verbatim}
+	In physics, the mass-energy equivalence is stated by the equation $E=mc^2$,
+	discovered in 1905 by Albert Einstein.
+\end{verbatim}
+
+The displayed mode has two versions: numbered and unnumbered.\\
+\begin{verbatim}
+The mass-energy equivalence is described by the famous equation
+
+$$E=mc^2$$
+
+discovered in 1905 by Albert Einstein. 
+In natural units ($c$ = 1), the formula expresses the identity
+
+\begin{equation}
+E=m
+\end{equation}
+\end{verbatim}
+
+
+The \textit{amsmath} package provides a handful of options for displaying equations. You can choose the layout that better suits your document, even if the equations are really long, or if you have to include several equations in the same line.
+
+\section{gnuplot}
+		\textbf{Gnuplot} is a portable command-line driven graphing utility for Linux, OS/2, MS Windows, OSX, VMS, and many other platforms. The source code is copyrighted but freely distributed (i.e., you don't have to pay for it). It was originally created to allow scientists and students to visualize mathematical functions and data interactively, but has grown to support many non-interactive uses such as web scripting. It is also used as a plotting engine by third-party applications like Octave. Gnuplot has been supported and under active development since 1986. \\
+		
+		A simple example which plots the the three graphs mentioned on the same co-ordinate system:
+		\begin{verbatim}
+			set title "Some math functions"
+			set xrange [-10:10]
+			set yrange [-2:2]
+			set zeroaxis
+			plot (x/4)**2, sin(x), 1/x
+			
+		\end{verbatim}
+		The supported functions include: 
+		\begin{center}
+			\begin{tabular}{ c c }
+			      abs(x)      &      absolute value of x, $|x|$\\
+			      acos(x)     &    arc-cosine  of x\\
+			      asin(x)     &      arc-sine    of x\\  
+			      atan(x)     &      arc-tangent of x\\
+			      cos(x)      &      cosine      of x,  x is in radians.\\
+			      cosh(x)     &      hyperbolic cosine of x, x is in radians\\
+			      erf(x)      &      error function of x\\
+			      exp(x)      &      exponential function of x, base e\\
+			      inverf(x)   &      inverse error function of x\\
+			      invnorm(x)  &      inverse normal distribution of x\\
+			      log(x)      &      log of x, base e\\
+			      log10(x)    &      log of x, base 10\\
+			      norm(x)     &      normal Gaussian distribution function\\
+			      rand(x)     &      pseudo-random number generator      \\
+			      sgn(x)      &      1 if $x > 0$, -1 if $x < 0$, 0 if $x=0$\\
+			      sin(x)      &      sine      of x, x is in radians\\
+			      sinh(x)     &      hyperbolic sine of x, x is in radians\\
+			      sqrt(x)     &      the square root of x\\
+			      tan(x)      &      tangent of x, x is in radians\\
+			      tanh(x)     &      hyperbolic tangent of x, x is in radians  
+			    \end{tabular}
+			\end{center}
+\subsection{GNUPLOT SCRIPTS }  
+Sometimes, several commands are typed to create a particular plot, and it is easy to make a typographical error when entering a command. To stream- line your plotting operations, several Gnuplot commands may be combined into a single script file. For example, the following file will create a customized display of the force-deflection data:
+	 
+	 \begin{verbatim}
+	       # Gnuplot script file for plotting data in file "force.dat"
+	       # This file is called   force.p
+	       set   autoscale                        # scale axes automatically
+	       unset log                              # remove any log-scaling
+	       unset label                            # remove any previous labels
+	       set xtic auto                          # set xtics automatically
+	       set ytic auto                          # set ytics automatically
+	       set title "Force Deflection Data for a Beam and a Column"
+	       set xlabel "Deflection (meters)"
+	       set ylabel "Force (kN)"
+	       set key 0.01,100
+	       set label "Yield Point" at 0.003,260
+	       set arrow from 0.0028,250 to 0.003,280
+	       set xr [0.0:0.022]
+	       set yr [0:325]
+	       plot    "force.dat" using 1:2 title 'Column' with linespoints , \
+	       "force.dat" using 1:3 title 'Beam' with points
+	 \end{verbatim}
+	 
+	 \subsection{CUSTOMIZING YOUR PLOT }
+	 Many items may be customized on the plot, such as the ranges of the axes, the labels of the x and y axes, the style of data point, the style of the lines connecting the data points, and the title of the entire plot. 
+	 \subsubsection{plot command customization }
+	  Plots may be displayed in one of eight styles: lines, points, linespoints, impulses, dots, steps, fsteps, histeps, errorbars, xerrorbars, yerrorbars, xyerrorbars, boxes, boxerrorbars, boxxyerrorbars, financebars, candlesticks or vector To specify the line/point style use the plot command as follows: \\
+	  \begin{verbatim}
+	        gnuplot> plot "force.dat" using 1:2 title 'Column' with lines, \
+	        "force.dat" u 1:3 t 'Beam' w linespoints
+	  \end{verbatim}
+	  Note that the words: using , title , and with can be abbreviated as: u, t, and w. Also, each line and point style has an associated number. 
+	  \subsubsection{ set command customization}
+	   Customization of the axis ranges, axis labels, and plot title, as well as many other features, are specified using the set command. Specific examples of the set command follow. (The numerical values used in these examples are arbitrary.) To view your changes type: replot at the gnuplot$>$ prompt at any time. 
+	   \begin{verbatim}
+	         Create a title:                  > set title "Force-Deflection Data" 
+	         Put a label on the x-axis:       > set xlabel "Deflection (meters)"
+	         Put a label on the y-axis:       > set ylabel "Force (kN)"
+	         Change the x-axis range:         > set xrange [0.001:0.005]
+	         Change the y-axis range:         > set yrange [20:500]
+	         Have Gnuplot determine ranges:   > set autoscale
+	         Move the key:                    > set key 0.01,100
+	         Delete the key:                  > unset key
+	         Put a label on the plot:         > set label "yield point" at 0.003, 260 
+	         Remove all labels:               > unset label
+	         Plot using log-axes:             > set logscale
+	         Plot using log-axes on y-axis:   > unset logscale; set logscale y 
+	         Change the tic-marks:            > set xtics (0.002,0.004,0.006,0.008)
+	         Return to the default tics:      > unset xtics; set xtics auto
+	         
+	         
+	   \end{verbatim}
 		\section{XFig}
 		\section{HTML}
 		\section{Git}
