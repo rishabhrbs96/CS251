@@ -1,5 +1,9 @@
 \documentclass{beamer}
 \usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{graphicx}
 
 \usetheme{Hannover}
 
@@ -12,74 +16,166 @@
 }
 
 \author{ Group 22 }
-\title{Basic Computing Tools}
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{graphicx}
+
+\usetheme{Hannover}
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\author{ Group 22 }
+\title[CS251]{Basic Computing Tools}
+\subtitle{CS251 Assignment}
+\institute{Indian Institute of Technology, Kanpur}
 \date{\today}
 
 \begin{document}
 \frame{\titlepage}
 \section{Bash}
-\section{Octave}
-\section{Latex}
+    \begin{frame}
+Bash is a Unix shell and command language written by Brian Fox for the GNU Project as a free software replacement for the Bourne shell. Released in 1989, it has been distributed widely as the shell for the GNU operating system and as a default shell on Linux and OS X. It was announced during the 2016 Build Conference that Windows 10 has added a Linux subsystem which fully supports Bash and other Ubuntu binaries running natively in Windows. In the past, and currently, it has also ported to Microsoft Windows and distributed with Cygwin and MinGW, to DOS by the DJGPP project, to Novell NetWare and to Android via various terminal emulation applications. In the late 1990s, Bash was a minor player among multiple commonly used shells; at present Bash has overwhelming favor.
+    \end{frame}
+    \begin{frame}
+        \begin{enumerate}
+            \item
+                For quick display of files:
+                    \$ cat helloworld.sh
+\end{enumerate}
+    \end{frame}
 
-\begin{frame}
-\frametitle{Introduction}\
-
-\LaTeX is a typesetting system that is very suitable for producing scientific and mathematical documents of high typographical quality. It is also suitable for producing all sorts of other documents, from simple letters to complete books.\\
-\LaTeX enables authors to typeset and print their work at the highest typographical quality, using a predefined, professional layout. \LaTeX was originally written by Leslie Lamport.
-	
+    \begin{frame}
+    \subsection{GREP}
+    grep is a command-line utility for searching plain-text data sets for lines matching a \textbf{regular expression}. Grep was originally developed for the Unix operating system, but is available today for all Unix-like systems. Its name comes from the ed command g/re/p (\textbf{g}lobally search a \textbf{re}gular expression and \textbf{p}rint), which has the same effect: doing a global search with the regular expression and printing all matching lines.
 \end{frame}
-
-\begin{frame}
-\frametitle{commands}\
-\LaTeX commands are case sensitive, and take one of the following two formats:
-	\begin{enumerate}
-		\item They start with a backslash \textbackslash and then have a name consisting of
-		letters only. Command names are terminated by a space, a number or
-		any other 'non-letter.'
-		\item They consist of a backslash and exactly one non-letter.
-		\item Many commands exist in a 'starred variant' where a star is appended
-		to the command name.
-	\end{enumerate}
+    \begin{frame}
+    Some basic grep commands are as follows:
+\begin{enumerate}
+    \item
+        For basic string search:
+            \$ grep "literal\_string" filename
+    \item
+        For case insensitive search:
+            \$ grep -i "string" filename
+    \item
+        For regular expressions:
+            \$ grep  "REGEX" filename
+    \item
+        To display N lines after match:
+            \$ grep  -A N "string" filename
+    \item
+        To display N lines before match:
+            \$ grep  -B N "string" filename
+    \item
+        To display lines which do not contain match:
+            \$ grep  -v -e "pattern" -e "pattern" filename
+    \item
+        Counting number of matches:
+            \$ grep  -c "pattern" filename
+    \item
+        To display N lines before match:
+            \$ grep  -B N "string" filename
+\end{enumerate}
 \end{frame}
+    \begin{frame}
+    \subsection{SED}
+    sed (stream editor) is a Unix utility that parses and transforms text, using a simple, compact programming language. \textbf{sed} was developed from 1973 to 1974 by Lee E. McMahon of Bell Labs, and is available today for most operating systems. sed was based on the scripting features of the interactive editor ed ("editor", 1971) and the earlier qed ("quick editor", 1965–66). sed was one of the earliest tools to support regular expressions, and remains in use for text processing, most notably with the substitution command. Other options for doing "stream editing" include AWK and Perl.
 
+    \end{frame}
+    \begin{enumerate}
+        \item
+            To match files and replace:
+                     sed  -e   ‘s/find expression/replace expression/’ filename
+        \item
+            To use the match as a part of replace string, we can use the following command:
+                    sed -n -e  's/United States/\& of America/p' country.txt
+                    United States of America
+          \item
+            To convert lower case letters to upper case:
+                    sed 'y/ul/UL/' file.txt
+  \end{enumerate}
+    \begin{frame}
+  \subsection{AWK}
+AWK is an interpreted programming language designed for text processing and typically used as a data extraction and reporting tool. It is a standard feature of most Unix-like operating systems.
 
-\section{gnuplot}
-\begin{frame}
-\frametitle{Introduction}\
-\textbf{Gnuplot} is a portable command-line driven graphing utility for Linux, OS/2, MS Windows, OSX, VMS, and many other platforms. The source code is copyrighted but freely distributed (i.e., you don't have to pay for it). It was originally created to allow scientists and students to visualize mathematical functions and data interactively, but has grown to support many non-interactive uses such as web scripting. It is also used as a plotting engine by third-party applications like Octave. Gnuplot has been supported and under active development since 1986. \\
+The AWK language is a data-driven scripting language consisting of a set of actions to be taken against streams of textual data – either run directly on files or used as part of a pipeline – for purposes of extracting or transforming text, such as producing formatted reports. The language extensively uses the string datatype, associative arrays (that is, arrays indexed by key strings), and regular expressions. While AWK has a limited intended application domain and was especially designed to support one-liner programs, the language is Turing-complete, and even the early Bell Labs users of AWK often wrote well-structured large AWK programs.
+    \end{frame}
+    \begin{frame}
+    \textbf{Octave}\\
+GNU Octave is software featuring a high-level programming language, primarily intended for numerical computations. It provides a command-line interface for solving linear and nonlinear problems numerically, and for performing other numerical experiments using a language that is mostly compatible with MATLAB. It may also be used as a batch-oriented language. 
 \end{frame}
+    \begin{frame}
 
-\begin{frame}
-\frametitle{Fuctions available}\
-\begin{center}
-			\begin{tabular}{ c c }
-			      abs(x)      &      absolute value of x, $|x|$\\
-			      acos(x)     &    arc-cosine  of x\\
-			      asin(x)     &      arc-sine    of x\\  
-			      atan(x)     &      arc-tangent of x\\
-			      cos(x)      &      cosine      of x,  x is in radians.\\
-			      cosh(x)     &      hyperbolic cosine of x, x is in radians\\
-			      erf(x)      &      error function of x\\
-			      exp(x)      &      exponential function of x, base e\\
-			      inverf(x)   &      inverse error function of x\\
-			      invnorm(x)  &      inverse normal distribution of x\\
-			      log(x)      &      log of x, base e\\
-			      log10(x)    &      log of x, base 10\\
-			      norm(x)     &      normal Gaussian distribution function\\
-			      rand(x)     &      pseudo-random number generator      \\
-			      sgn(x)      &      1 if $x > 0$, -1 if $x < 0$, 0 if $x=0$\\
-			      sin(x)      &      sine      of x, x is in radians\\
-			      sinh(x)     &      hyperbolic sine of x, x is in radians\\
-			      sqrt(x)     &      the square root of x\\
-			      tan(x)      &      tangent of x, x is in radians\\
-			      tanh(x)     &      hyperbolic tangent of x, x is in radians  
-			    \end{tabular}
-			\end{center}
+Octave is one of the major free alternatives to MATLAB, others being Julia and Scilab. These however put less emphasis on (bidirectional) syntactic compatibility with MATLAB than Octave does.
 \end{frame}
-
-\section{XFig}
+    \begin{frame}
+  \subsection{MATLAB compatibility}
+Octave has been built with MATLAB compatibility in mind, and shares many features with MATLAB:
+            \begin{enumerate}
+                    \item
+                        Matrices as fundamental data type.
+                    \item
+                        Built-in support for complex numbers.
+                    \item
+                        Powerful built-in math functions and extensive function libraries.
+                    \item
+                        Extensibility in the form of user-defined functions.
+            \end{enumerate}
+            Due to this, it is easy to look for octave's documentation on Mathworks at \url{http://in.mathworks.com/}
+\end{frame}
 \section{HTML}
+\begin{frame}
 
+\textbf{ HyperText Markup Language }, commonly referred to as HTML,
+is the standard markup
+language used to create web pages. Along with CSS, and JavaScript, HTML is a
+cornerstone technology used to create web pages, as well as to create user
+interfaces for mobile and web applications.\\
+\end{frame}
+
+\begin{frame}\frametitle{HTML Introduction}
+
+HTML elements form the building blocks of HTML pages. HTML allows images and other
+objects to be embedded and it can be used to create interactive forms. It provides
+a means to create structured documents by denoting structural semantics for text
+such as headings, paragraphs, lists, links, quotes and other items. HTML elements
+are delineated by tags, written using angle brackets. Tags such as $<img/>$ and
+$<input />$ introduce content into the page directly. Others such as $<p>$...$</p>$
+surround and provide information about document text and may include other tags
+as sub-elements. Browsers do not display the HTML tags, but use them to interpret
+the content of the page.
+\end{frame}
+
+\begin{frame}
+\frametitle{CSS}
+\subsection{CSS}
+CSS is a stylesheet language that describes the presentation of an HTML (or XML) document.
+
+CSS describes how elements must be rendered on screen, on paper, or in other media.
+\end{frame}
+
+\begin{frame}
+\frametitle{CSS Syntax}
+\subsection{CSS Syntax}
+A CSS rule-set consists of a selector and a declaration block.
+The selector points to the HTML element you want to style.
+
+The declaration block contains one or more declarations separated by semicolons.
+
+Each declaration includes a CSS property name and a value, separated by a colon.
+
+A CSS declaration always ends with a semicolon, and declaration blocks are surrounded by curly braces.
+\end{frame}
+    
 \section{Git}
 \begin{frame}
 \frametitle{Introduction}
@@ -179,6 +275,43 @@ The git revert command undoes a committed snapshot. But, instead of removing the
 
 
 \section{BitBucket}
+\begin{frame}
+\frametitle{Introduction}
+	 Bitbucket is a web-based hosting service for projects that use either the Mercurial (since launch) or Git (since October 2011) revision control systems. Bitbucket offers both commercial plans and free accounts. It offers free accounts with an unlimited number of private repositories. It is a system for hosting version control repositories owned by Atlassian. It is a competitor to github.
+\end{frame}
 
+\begin{frame}
+\frametitle{Creating a Git repository}
+ 	\begin{enumerate}
+ 		\item From Bitbucket, click Repositories and then Create repository button at the top of the page.
+         The system displays the Create a new repository page.
+        \item Enter BitbucketStationLocations for the Name field.
+    Bitbucket uses this Name in the URL of the repository. For example, if the user thebest has a repository called awesomerepo, the URL for that repository would be https://bitbucket.org/thebest/awesomerepo.
+        \item For Access level, leave the This is a private repository box checked. A private repository is only visible to you and those you give access to. If this box is unchecked, everyone can see your repository.
+        \item Pick Git for the Repository type. 
+        \item Click Create repository. Bitbucket creates repository and displays its Overview page.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Cloning repository}
+ 	\begin{enumerate}
+        \item First make a directory on local machine.
+        \item From Bitbucket, go to BitbucketStationLocations repository.
+        Click Clone. The system displays a pop-up clone dialog. By default, the clone dialog sets the protocol to HTTPS or SSH, depending on your settings. For the purposes of this tutorial, don't change your default protocol.
+        \item Copy the highlighted clone command. From terminal window, paste the command copied from Bitbucket and press Return.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Create a file in Bitbucket}
+ 	\begin{enumerate}
+ 		\item From BitbucketStationLocations repository, click Source to open the source directory
+        \item From the Source page, click New file in the top right corner.
+    A page for creating the new file opens. 
+        \item Enter filename in the  filename  field . Then select mode from the Syntax mode list. Finally add the following  code into the text box.
+        \item Click Commit. The Commit message field appears with the message: "filename" created online with Bitbucket. Click Commit under the message field.
+    \end{enumerate}
+\end{frame}
 
 \end{document}
